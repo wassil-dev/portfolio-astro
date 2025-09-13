@@ -1,0 +1,54 @@
+---
+import "../../styles/global.css";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+
+// Static paths
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+// Project prop and render content
+const { project } = Astro.props as { project: CollectionEntry<"projects"> };
+const { Content } = await project.render();
+---
+
+<main class="max-w-4xl mx-auto p-6 space-y-8">
+  {project.data.cover && (
+    <img 
+      src={project.data.cover} 
+      alt={project.data.title} 
+      class="rounded-lg w-full shadow-lg mb-6" 
+    />
+  )}
+
+  <h1 class="text-4xl font-bold mb-4">{project.data.title}</h1>
+
+  {project.data.tags && project.data.tags.length > 0 && (
+    <div class="flex flex-wrap gap-2 mb-6">
+      {project.data.tags.map((tag: string) => (
+        <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded">
+          {tag}
+        </span>
+      ))}
+    </div>
+  )}
+
+  <!-- Render MDX content -->
+  <div class="bg-white dark:bg-gray-900 rounded-lg border shadow-sm p-8">
+    <article class="prose prose-lg dark:prose-invert max-w-none">
+      <Content />
+    </article>
+  </div>
+
+  <a 
+    href="/" 
+    class="inline-block mt-8 px-5 py-2 bg-primary text-white rounded hover:bg-primary-foreground transition"
+  >
+    ← Back to Home
+  </a>
+</main>

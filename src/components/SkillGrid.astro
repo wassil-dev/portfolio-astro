@@ -1,0 +1,23 @@
+---
+import * as icons from "simple-icons";
+import skills from "../data/skills.json";
+---
+
+<ul class="grid grid-cols-2 sm:grid-cols-4 gap-6">
+  {skills.map((skill) => {
+    const icon = skill.icon ? icons[skill.icon as keyof typeof icons] : null;
+    return (
+      <li class="flex flex-col items-center gap-2">
+        {icon ? (
+          <svg role="img" viewBox="0 0 24 24" width="40" height="40" fill={`#${icon.hex}`}>
+            <title>{icon.title}</title>
+            <path d={icon.path} />
+          </svg>
+        ) : (
+          <img src={skill.custom} alt={skill.name} width="40" />
+        )}
+        <span>{skill.name}</span>
+      </li>
+    );
+  })}
+</ul>

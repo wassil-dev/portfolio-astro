@@ -1,0 +1,8 @@
+[
+  { "name": "Python", "icon": "siPython" },
+  { "name": "SQL", "custom": "/icons/database.svg" },
+  { "name": "DuckDB", "icon": "siDuckdb" },
+  { "name": "Airflow", "icon": "siApacheairflow" },
+  { "name": "Pandas", "icon": "siPandas" },
+  { "name": "Scikit-learn", "icon": "siScikitlearn" }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "role": "Fraud Analyst",
+    "company": "Telecom Company",
+    "period": "2022 - Present",
+    "details": [
+      "Detect SMS fraud with anomaly detection",
+      "Automated monthly fraud reporting"
+    ]
+  },
+  {
+    "role": "Data Analyst",
+    "company": "Cloud Provider",
+    "period": "2019 - 2021",
+    "details": [
+      "Built ETL pipelines",
+      "Optimized dashboards and reporting"
+    ]
+  }
+]

@@ -1,0 +1,14 @@
+---
+import experiences from "../data/experiences.json";
+---
+<div class="border-l-2 pl-4">
+  {experiences.map(job => (
+    <div class="mb-6">
+      <h3 class="font-bold">{job.role} @ {job.company}</h3>
+      <span class="text-sm text-gray-500">{job.period}</span>
+      <ul class="list-disc pl-5">
+        {job.details.map(d => <li>{d}</li>)}
+      </ul>
+    </div>
+  ))}
+</div>

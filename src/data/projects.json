@@ -1,0 +1,16 @@
+[
+  {
+    "title": "SIMBox Fraud Detection",
+    "description": "Developed ML classification models...",
+    "tech": ["Python", "XGBoost", "SQL", "DuckDB"],
+    "tags": ["Python", "ML", "Fraud"],
+    "link": "#"
+  },
+  {
+    "title": "Backend Modules in Odoo",
+    "description": "Developed patient management modules...",
+    "tech": ["Python", "Odoo", "PostgreSQL"],
+    "tags": [],
+    "link": "#"
+  }
+]
