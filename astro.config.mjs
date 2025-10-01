@@ -7,8 +7,8 @@ import mdx from '@astrojs/mdx';
 export default defineConfig({
   // Set the site URL for GitHub Pages
   site: 'https://wassil-dev.github.io',
-  // Deploying to repository: portfolio-v4
-  base: '/portfolio-v4',
+  // Deploying to repository: portfolio-astro
+  base: '/portfolio-astro',
 
   integrations: [react(), mdx()],
 

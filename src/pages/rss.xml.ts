@@ -13,7 +13,7 @@ export async function GET(context: APIContext) {
   return rss({
     title: 'Ouassil Dahimene - Blog',
     description: 'Insights on data analysis, fraud detection, machine learning, and technology',
-    site: context.site || 'https://wassil-dev.github.io/portfolio-v4',
+    site: context.site || 'https://wassil-dev.github.io/portfolio-astro',
     items: posts.map((post) => ({
       title: post.data.title,
       description: post.data.description,
