@@ -1,0 +1,42 @@
+---
+title: "Customer Churn Prediction"
+description: "Machine learning model to predict customer churn and reduce attrition rates."
+tags: ["Python", "ML", "Classification", "XGBoost"]
+cover: "/images/churn.jpg"
+date: "2024-08-15"
+---
+
+## Overview
+
+Built a predictive model to identify customers at risk of churning, enabling proactive retention strategies.
+
+### Key Features
+
+- Feature engineering from customer transaction data
+- Ensemble ML models (Random Forest, XGBoost, LightGBM)
+- SHAP values for model interpretability
+- Real-time scoring API
+
+### Technical Stack
+
+- **Data Processing**: Pandas, NumPy, Scikit-learn
+- **Modeling**: XGBoost, LightGBM, Random Forest
+- **Visualization**: Matplotlib, Seaborn, Plotly
+- **API**: FastAPI for model serving
+
+### Results
+
+- **92% accuracy** in predicting churn
+- **85% precision** for high-risk customers
+- Reduced churn rate by **18%** after implementation
+- Identified top 5 churn indicators
+
+### Implementation
+
+The model processes customer behavioral data including:
+- Transaction frequency and recency
+- Support ticket history
+- Product usage patterns
+- Demographic information
+
+Deployed as a REST API that provides real-time churn probability scores for any customer.

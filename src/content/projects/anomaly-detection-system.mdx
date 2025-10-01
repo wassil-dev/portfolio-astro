@@ -1,0 +1,60 @@
+---
+title: "Network Anomaly Detection System"
+description: "Real-time anomaly detection for network traffic using unsupervised learning and autoencoders."
+tags: ["Python", "Deep Learning", "Cybersecurity", "Anomaly Detection"]
+cover: "/images/anomaly.jpg"
+date: "2024-03-18"
+---
+
+## Overview
+
+Developed an intelligent anomaly detection system that monitors network traffic patterns and identifies suspicious activities in real-time using unsupervised machine learning.
+
+### Key Features
+
+- Real-time streaming analysis
+- Unsupervised learning (no labeled data needed)
+- Adaptive thresholds
+- Multi-level anomaly scoring
+- Automated incident response
+
+### Technical Stack
+
+- **ML Algorithms**: Isolation Forest, Autoencoders, One-Class SVM
+- **Stream Processing**: Apache Kafka, Apache Flink
+- **Deep Learning**: TensorFlow, Keras
+- **Monitoring**: Prometheus, Grafana
+
+### Results
+
+- **96% detection rate** for known attacks
+- **78% detection rate** for zero-day threats
+- **Less than 2% false positive** rate
+- Reduced mean time to detect (MTTD) by **65%**
+
+### Implementation
+
+Multi-layered detection approach:
+
+**Statistical Methods**
+- Z-score analysis for traffic volume
+- Time series decomposition
+- Moving average comparisons
+
+**Machine Learning**
+- Isolation Forest for outlier detection
+- One-Class SVM for boundary learning
+- DBSCAN for clustering analysis
+
+**Deep Learning**
+- LSTM Autoencoders for sequence anomalies
+- Variational Autoencoders for reconstruction error
+- Attention mechanisms for feature importance
+
+Key capabilities:
+- Learns normal behavior patterns automatically
+- Adapts to network changes over time
+- Provides explainable anomaly scores
+- Integrates with SIEM systems
+
+Monitors 100+ network devices and processes 1M+ events per minute with sub-second detection latency.

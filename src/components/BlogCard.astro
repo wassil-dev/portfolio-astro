@@ -11,6 +11,8 @@ interface Props {
 
 const { title, description, pubDate, author = "Ouassil Dahimene", cover, tags = [], slug } = Astro.props;
 
+const base = import.meta.env.BASE_URL;
+
 // Format date
 const formattedDate = new Intl.DateTimeFormat('en-US', {
   year: 'numeric',
@@ -23,7 +25,7 @@ const readTime = Math.ceil(description.split(' ').length / 50);
 ---
 
 <article class="group block bg-card border-2 border-border rounded-xl overflow-hidden hover:border-primary/50 hover:shadow-lg transition-all">
-  <a href={`/blog/${slug}`} class="block">
+  <a href={`${base}blog/${slug}`} class="block">
     {/* Cover Image */}
     {cover && (
       <div class="aspect-video w-full overflow-hidden bg-muted">
