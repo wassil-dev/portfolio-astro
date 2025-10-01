@@ -13,6 +13,8 @@ const {
   title = "Ouassil Dahimene - Data Analyst & Data Scientist",
   description = "Portfolio of Ouassil Dahimene - Data Analyst, Fraud Analyst, Data Scientist, and Data Engineer"
 } = Astro.props;
+
+const base = import.meta.env.BASE_URL;
 ---
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
@@ -24,11 +26,11 @@ const {
     <ViewTransitions />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <link rel="apple-touch-icon" sizes="180x180" href={`${base}favicon.svg`} />
 
     <!-- RSS Feed -->
-    <link rel="alternate" type="application/rss+xml" title="Ouassil Dahimene - Blog" href="/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Ouassil Dahimene - Blog" href={`${base}rss.xml`} />
 
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website" />
