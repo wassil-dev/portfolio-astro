@@ -4,5 +4,17 @@
   { "name": "DuckDB", "icon": "siDuckdb" },
   { "name": "Airflow", "icon": "siApacheairflow" },
   { "name": "Pandas", "icon": "siPandas" },
-  { "name": "Scikit-learn", "icon": "siScikitlearn" }
+  { "name": "Scikit-learn", "icon": "siScikitlearn" },
+  { "name": "TensorFlow", "icon": "siTensorflow" },
+  { "name": "PyTorch", "icon": "siPytorch" },
+  { "name": "Docker", "icon": "siDocker" },
+  { "name": "PostgreSQL", "icon": "siPostgresql" },
+  { "name": "Spark", "icon": "siApachespark" },
+  { "name": "Git", "icon": "siGit" },
+  { "name": "AWS", "icon": "siAmazonaws" },
+  { "name": "Tableau", "icon": "siTableau" },
+  { "name": "Jupyter", "icon": "siJupyter" },
+  { "name": "NumPy", "icon": "siNumpy" },
+  { "name": "FastAPI", "icon": "siFastapi" },
+  { "name": "Linux", "icon": "siLinux" }
 ]
