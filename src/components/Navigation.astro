@@ -1,0 +1,177 @@
+---
+// Navigation header with smooth scroll links
+const currentPath = Astro.url.pathname;
+const isHomePage = currentPath === '/';
+
+const navLinks = [
+  { name: "Home", href: "/" },
+  { name: "About", href: isHomePage ? "#about" : "/#about" },
+  { name: "Projects", href: isHomePage ? "#projects" : "/#projects" },
+  { name: "Experience", href: isHomePage ? "#experience" : "/#experience" },
+  { name: "Blog", href: "/blog" },
+  { name: "Contact", href: isHomePage ? "#contact" : "/#contact" },
+];
+---
+
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-lg border-b border-border transition-all duration-300">
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo/Brand -->
+      <a href="/" class="flex items-center gap-2 font-bold text-xl hover:text-primary transition-colors">
+        <svg class="w-8 h-8" viewBox="0 0 128 128" fill="none">
+          <defs>
+            <linearGradient id="nav-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+            </linearGradient>
+          </defs>
+          <rect width="128" height="128" rx="24" fill="url(#nav-grad)"/>
+          <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-size="72" font-weight="bold" fill="white">OD</text>
+        </svg>
+        <span class="hidden sm:inline">Ouassil</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <ul class="hidden md:flex items-center gap-1">
+        {navLinks.map(link => (
+          <li>
+            <a
+              href={link.href}
+              class="px-4 py-2 rounded-lg hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
+            >
+              {link.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-button"
+        class="md:hidden p-2 rounded-lg hover:bg-accent"
+        aria-label="Toggle menu"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path class="menu-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          <path class="menu-close hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-border">
+    <ul class="container mx-auto px-4 py-4 space-y-2">
+      {navLinks.map(link => (
+        <li>
+          <a
+            href={link.href}
+            class="block px-4 py-2 rounded-lg hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
+          >
+            {link.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>
+
+<!-- Spacer to prevent content from going under fixed nav -->
+<div class="h-16"></div>
+
+<script>
+  // Mobile menu toggle
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuOpenIcon = mobileMenuButton?.querySelector('.menu-open');
+  const menuCloseIcon = mobileMenuButton?.querySelector('.menu-close');
+
+  mobileMenuButton?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+    menuOpenIcon?.classList.toggle('hidden');
+    menuCloseIcon?.classList.toggle('hidden');
+  });
+
+  // Close mobile menu when clicking a link
+  const mobileLinks = mobileMenu?.querySelectorAll('a');
+  mobileLinks?.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+      menuOpenIcon?.classList.remove('hidden');
+      menuCloseIcon?.classList.add('hidden');
+    });
+  });
+
+  // Smooth scroll for hash links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (href && href !== '#') {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          const navHeight = document.getElementById('main-nav')?.offsetHeight || 0;
+          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }
+    });
+  });
+
+  // Hide/show nav on scroll
+  let lastScroll = 0;
+  const nav = document.getElementById('main-nav');
+
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll <= 0) {
+      nav?.classList.remove('-translate-y-full');
+      return;
+    }
+
+    if (currentScroll > lastScroll && currentScroll > 100) {
+      // Scrolling down
+      nav?.classList.add('-translate-y-full');
+    } else {
+      // Scrolling up
+      nav?.classList.remove('-translate-y-full');
+    }
+
+    lastScroll = currentScroll;
+  });
+
+  // Add active state to nav links based on scroll position
+  const sections = document.querySelectorAll('section[id]');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    const navHeight = nav?.offsetHeight || 0;
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - navHeight - 100;
+      const sectionHeight = section.offsetHeight;
+
+      if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+        current = section.getAttribute('id') || '';
+      }
+    });
+
+    document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+      link.classList.remove('bg-accent', 'text-accent-foreground');
+      const href = link.getAttribute('href')?.substring(1);
+      if (href === current) {
+        link.classList.add('bg-accent', 'text-accent-foreground');
+      }
+    });
+  });
+</script>
+
+<style>
+  #main-nav {
+    transition: transform 0.3s ease-in-out;
+  }
+</style>

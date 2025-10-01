@@ -1,0 +1,55 @@
+---
+// Scroll to top button
+---
+
+<button
+  id="scroll-to-top"
+  class="fixed bottom-8 right-8 p-3 bg-primary text-primary-foreground rounded-full shadow-lg hover:shadow-xl transition-all duration-300 opacity-0 invisible hover:scale-110 z-40"
+  aria-label="Scroll to top"
+>
+  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+  </svg>
+</button>
+
+<script>
+  const scrollToTopBtn = document.getElementById('scroll-to-top');
+
+  // Show/hide button based on scroll position
+  function toggleScrollButton() {
+    if (!scrollToTopBtn) return;
+
+    if (window.scrollY > 300) {
+      scrollToTopBtn.classList.remove('opacity-0', 'invisible');
+      scrollToTopBtn.classList.add('opacity-100', 'visible');
+    } else {
+      scrollToTopBtn.classList.add('opacity-0', 'invisible');
+      scrollToTopBtn.classList.remove('opacity-100', 'visible');
+    }
+  }
+
+  // Scroll to top smoothly
+  scrollToTopBtn?.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+
+  // Listen to scroll events
+  window.addEventListener('scroll', toggleScrollButton, { passive: true });
+
+  // Initial check
+  toggleScrollButton();
+
+  // Handle view transitions
+  document.addEventListener('astro:page-load', () => {
+    toggleScrollButton();
+  });
+</script>
+
+<style>
+  #scroll-to-top {
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, transform 0.2s ease-in-out;
+  }
+</style>

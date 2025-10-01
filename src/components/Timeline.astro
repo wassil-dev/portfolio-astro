@@ -1,14 +1,58 @@
 ---
-import experiences from "../data/experiences.json";
+interface Experience {
+  role: string;
+  company: string;
+  period: string;
+  details: string[];
+}
+
+interface Props {
+  experiences: Experience[];
+}
+
+const { experiences } = Astro.props;
 ---
-<div class="border-l-2 pl-4">
-  {experiences.map(job => (
-    <div class="mb-6">
-      <h3 class="font-bold">{job.role} @ {job.company}</h3>
-      <span class="text-sm text-gray-500">{job.period}</span>
-      <ul class="list-disc pl-5">
-        {job.details.map(d => <li>{d}</li>)}
-      </ul>
+<div class="relative">
+  {experiences.map((job: Experience, index: number) => (
+    <div class="relative pb-12 last:pb-0">
+      <!-- Timeline Line -->
+      <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-border" />
+
+      <!-- Timeline Dot -->
+      <div class="absolute left-0 top-2 w-4 h-4 -ml-[7px] rounded-full bg-primary border-4 border-background shadow-lg" />
+
+      <!-- Content -->
+      <div class="pl-10">
+        <div class="bg-card border-2 border-border rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+          <div class="mb-3">
+            <h3 class="text-xl font-bold text-foreground mb-1">
+              {job.role}
+            </h3>
+            <div class="flex items-center gap-2 text-muted-foreground mb-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+              </svg>
+              <span class="font-semibold">{job.company}</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm text-muted-foreground">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+              {job.period}
+            </div>
+          </div>
+          <ul class="space-y-2">
+            {job.details.map((d: string) => (
+              <li class="flex items-start gap-2 text-foreground">
+                <svg class="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span class="text-sm leading-relaxed">{d}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   ))}
 </div>

@@ -1,0 +1,20 @@
+[
+  {
+    "title": "AWS Certified Data Analytics",
+    "issuer": "Amazon Web Services",
+    "date": "2023",
+    "icon": "aws"
+  },
+  {
+    "title": "Machine Learning Specialization",
+    "issuer": "Stanford Online",
+    "date": "2022",
+    "icon": "certificate"
+  },
+  {
+    "title": "Python for Data Science",
+    "issuer": "IBM",
+    "date": "2022",
+    "icon": "certificate"
+  }
+]

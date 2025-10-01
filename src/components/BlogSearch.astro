@@ -1,0 +1,137 @@
+---
+// Blog search component
+---
+
+<div class="mb-8">
+  <div class="relative">
+    <input
+      type="text"
+      id="blog-search"
+      placeholder="Search blog posts..."
+      class="w-full px-4 py-3 pl-12 bg-background border-2 border-border rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+    />
+    <svg class="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+    </svg>
+  </div>
+
+  <!-- Tag filter -->
+  <div class="mt-4">
+    <div class="flex flex-wrap gap-2" id="tag-filter">
+      <!-- Tags will be populated by JavaScript -->
+    </div>
+  </div>
+
+  <!-- Results count -->
+  <div id="search-results-count" class="mt-4 text-sm text-muted-foreground hidden">
+    <!-- Results count will be shown here -->
+  </div>
+</div>
+
+<script>
+  const searchInput = document.getElementById('blog-search') as HTMLInputElement;
+  const tagFilter = document.getElementById('tag-filter');
+  const resultsCount = document.getElementById('search-results-count');
+  const blogCards = document.querySelectorAll('[data-blog-card]');
+
+  let selectedTags = new Set<string>();
+  const allTags = new Set<string>();
+
+  // Extract all tags from blog posts
+  blogCards.forEach(card => {
+    const tags = card.getAttribute('data-tags')?.split(',') || [];
+    tags.forEach(tag => allTags.add(tag.trim()));
+  });
+
+  // Render tag filter buttons
+  function renderTagFilter() {
+    if (!tagFilter) return;
+
+    const sortedTags = Array.from(allTags).sort();
+    tagFilter.innerHTML = sortedTags.map(tag => `
+      <button
+        class="tag-btn px-3 py-1 rounded-full text-sm border-2 transition-all ${
+          selectedTags.has(tag)
+            ? 'bg-primary text-primary-foreground border-primary'
+            : 'bg-background text-foreground border-border hover:border-primary/50'
+        }"
+        data-tag="${tag}"
+      >
+        ${tag}
+      </button>
+    `).join('');
+
+    // Add click handlers
+    tagFilter.querySelectorAll('.tag-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tag = btn.getAttribute('data-tag') || '';
+        if (selectedTags.has(tag)) {
+          selectedTags.delete(tag);
+        } else {
+          selectedTags.add(tag);
+        }
+        renderTagFilter();
+        filterPosts();
+      });
+    });
+  }
+
+  // Filter posts based on search and tags
+  function filterPosts() {
+    const searchTerm = searchInput?.value.toLowerCase() || '';
+    let visibleCount = 0;
+
+    blogCards.forEach(card => {
+      const title = card.getAttribute('data-title')?.toLowerCase() || '';
+      const description = card.getAttribute('data-description')?.toLowerCase() || '';
+      const tags = card.getAttribute('data-tags')?.split(',').map(t => t.trim()) || [];
+
+      // Check search term
+      const matchesSearch = !searchTerm ||
+        title.includes(searchTerm) ||
+        description.includes(searchTerm) ||
+        tags.some(tag => tag.toLowerCase().includes(searchTerm));
+
+      // Check selected tags
+      const matchesTags = selectedTags.size === 0 ||
+        tags.some(tag => selectedTags.has(tag));
+
+      if (matchesSearch && matchesTags) {
+        (card as HTMLElement).style.display = '';
+        visibleCount++;
+      } else {
+        (card as HTMLElement).style.display = 'none';
+      }
+    });
+
+    // Update results count
+    if (resultsCount) {
+      if (searchTerm || selectedTags.size > 0) {
+        resultsCount.classList.remove('hidden');
+        resultsCount.textContent = `Showing ${visibleCount} of ${blogCards.length} posts`;
+      } else {
+        resultsCount.classList.add('hidden');
+      }
+    }
+  }
+
+  // Initialize
+  renderTagFilter();
+
+  // Search input handler with debounce
+  let searchTimeout: NodeJS.Timeout;
+  searchInput?.addEventListener('input', () => {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(filterPosts, 300);
+  });
+
+  // Clear search on Escape
+  searchInput?.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      searchInput.value = '';
+      selectedTags.clear();
+      renderTagFilter();
+      filterPosts();
+    }
+  });
+</script>

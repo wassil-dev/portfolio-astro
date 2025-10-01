@@ -1,0 +1,78 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  author?: string;
+  cover?: string;
+  tags?: string[];
+  slug: string;
+}
+
+const { title, description, pubDate, author = "Ouassil Dahimene", cover, tags = [], slug } = Astro.props;
+
+// Format date
+const formattedDate = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+}).format(pubDate);
+
+// Calculate read time (rough estimate: 200 words per minute)
+const readTime = Math.ceil(description.split(' ').length / 50);
+---
+
+<article class="group block bg-card border-2 border-border rounded-xl overflow-hidden hover:border-primary/50 hover:shadow-lg transition-all">
+  <a href={`/blog/${slug}`} class="block">
+    {/* Cover Image */}
+    {cover && (
+      <div class="aspect-video w-full overflow-hidden bg-muted">
+        <img
+          src={cover}
+          alt={title}
+          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        />
+      </div>
+    )}
+
+    {/* Content */}
+    <div class="p-6 space-y-4">
+      {/* Tags */}
+      {tags.length > 0 && (
+        <div class="flex flex-wrap gap-2">
+          {tags.slice(0, 3).map((tag: string) => (
+            <span class="bg-primary/10 text-primary text-xs font-medium px-3 py-1 rounded-full">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+
+      {/* Title */}
+      <h3 class="text-2xl font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2">
+        {title}
+      </h3>
+
+      {/* Description */}
+      <p class="text-muted-foreground line-clamp-3 leading-relaxed">
+        {description}
+      </p>
+
+      {/* Meta Info */}
+      <div class="flex items-center gap-4 pt-2 text-sm text-muted-foreground border-t border-border">
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          <time datetime={pubDate.toISOString()}>{formattedDate}</time>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <span>{readTime} min read</span>
+        </div>
+      </div>
+    </div>
+  </a>
+</article>

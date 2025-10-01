@@ -3,6 +3,23 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import mdx from '@astrojs/mdx';
 
+// https://astro.build/config
 export default defineConfig({
-  integrations: [react(),mdx()],
+  // Set the site URL for GitHub Pages
+  site: 'https://wassil-dev.github.io',
+  // Deploying to repository: portfolio-v4
+  base: '/portfolio-v4',
+
+  integrations: [react(), mdx()],
+
+  // Output as static site for GitHub Pages
+  output: 'static',
+
+  vite: {
+    resolve: {
+      alias: {
+        '@': '/src'
+      }
+    }
+  }
 });

@@ -1,0 +1,23 @@
+{
+  "name": "Ouassil Dahimene",
+  "bio": "Passionate Data Analyst and Fraud Detection Specialist with expertise in machine learning and data engineering. I transform complex data into actionable insights and build robust systems to detect anomalies and prevent fraud.",
+  "image": "/profile.jpg",
+  "stats": [
+    {
+      "label": "Years Experience",
+      "value": "3+"
+    },
+    {
+      "label": "Projects Completed",
+      "value": "15+"
+    },
+    {
+      "label": "Technologies",
+      "value": "20+"
+    },
+    {
+      "label": "Fraud Cases Analyzed",
+      "value": "1000+"
+    }
+  ]
+}

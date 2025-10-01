@@ -11,6 +11,20 @@ const projectsCollection = defineCollection({
   }),
 });
 
+const blogCollection = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.date(),
+    author: z.string().default("Ouassil Dahimene"),
+    cover: z.string().optional(),
+    tags: z.array(z.string()).default([]),
+    draft: z.boolean().default(false),
+  }),
+});
+
 export const collections = {
-  projects: projectsCollection, // Must match folder name
+  projects: projectsCollection,
+  blog: blogCollection,
 };

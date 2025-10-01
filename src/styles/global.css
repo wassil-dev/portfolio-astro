@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---------------------- */
+/* Custom CSS variables   */
+/* ---------------------- */
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -23,46 +26,125 @@
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
     --ring: 240 10% 3.9%;
+    --radius: 0.5rem;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem
   }
+
   .dark {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
     --primary: 0 0% 98%;
     --primary-foreground: 240 5.9% 10%;
     --secondary: 240 3.7% 15.9%;
     --secondary-foreground: 0 0% 98%;
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
     --border: 240 3.7% 15.9%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%
+    --chart-5: 340 75% 55%;
   }
-}
 
-@layer base {
+  /* Apply border and background defaults */
   * {
     @apply border-border;
   }
-  body {
+
+  html, body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
+    width: 100%;
   }
+
+  /* Prevent horizontal scroll */
+  body {
+    max-width: 100vw;
+  }
+}
+
+/* ---------------------- */
+/* Responsive Prose       */
+/* ---------------------- */
+@layer base {
+  article.prose {
+    max-width: 100%;
+    word-wrap: break-word;
+  }
+
+  /* Headings */
+  article.prose h1 {
+    font-size: 1.5rem;
+  }
+  @screen sm { article.prose h1 { font-size: 1.875rem; } }
+  @screen md { article.prose h1 { font-size: 2.25rem; } }
+  @screen lg { article.prose h1 { font-size: 2.5rem; } }
+
+  article.prose h2 {
+    font-size: 1.25rem;
+  }
+  @screen sm { article.prose h2 { font-size: 1.5rem; } }
+  @screen md { article.prose h2 { font-size: 1.75rem; } }
+
+  /* Paragraphs */
+  article.prose p {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  @screen sm { article.prose p { font-size: 1rem; line-height: 1.6; } }
+  @screen md { article.prose p { font-size: 1.125rem; line-height: 1.7; } }
+
+  /* Code blocks */
+  article.prose pre,
+  article.prose code {
+    font-size: 0.75rem;
+  }
+  @screen sm { article.prose pre, article.prose code { font-size: 0.875rem; } }
+  @screen md { article.prose pre, article.prose code { font-size: 1rem; } }
+
+  /* Tables */
+  article.prose table {
+    font-size: 0.75rem;
+    width: 100%;
+    table-layout: auto;
+  }
+  @screen sm { article.prose table { font-size: 0.875rem; } }
+  @screen md { article.prose table { font-size: 1rem; } }
+
+  /* Images */
+  article.prose img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+  }
+
+  /* Blockquotes */
+  article.prose blockquote {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-left-width: 4px;
+    border-left-color: hsl(var(--primary));
+    background-color: hsl(var(--muted) / 0.5);
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin: 1rem 0;
+  }
+  @screen sm { article.prose blockquote { font-size: 1rem; line-height: 1.6; } }
+  @screen md { article.prose blockquote { font-size: 1.125rem; line-height: 1.7; } }
 }
