@@ -13,35 +13,53 @@ const base = import.meta.env.BASE_URL;
 
 <a
   href={link}
-  class="block p-6 border border-border rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 bg-card hover:bg-accent/50"
+  class="group relative block p-6 border-2 border-border rounded-2xl shadow-sm hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 bg-gradient-to-br from-card to-card/50 hover:border-primary/50 hover:-translate-y-2"
 >
-  {/* Cover image */}
-  {cover && (
-    <img
-      src={`${base}${cover.startsWith('/') ? cover.slice(1) : cover}`}
-      alt={title}
-      class="mb-4 w-full h-48 object-cover rounded-lg"
-    />
-  )}
+  <!-- Gradient overlay on hover -->
+  <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
 
-  {/* Title */}
-  <h2 class="text-xl font-bold mb-2 text-card-foreground">{title}</h2>
+  <!-- Content wrapper -->
+  <div class="relative">
+    {/* Cover image */}
+    {cover && (
+      <div class="relative mb-4 w-full h-48 rounded-lg overflow-hidden border-2 border-border group-hover:border-primary/30 transition-colors">
+        <img
+          src={`${base}${cover.startsWith('/') ? cover.slice(1) : cover}`}
+          alt={title}
+          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+        />
+        <!-- Image overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      </div>
+    )}
 
-  {/* Description */}
-  {description && (
-    <p class="text-muted-foreground text-sm mb-4 line-clamp-3">{description}</p>
-  )}
+    {/* Title */}
+    <h2 class="text-xl font-bold mb-2 text-card-foreground group-hover:text-primary transition-colors">{title}</h2>
 
-  {/* Tech tags */}
-  {tech.length > 0 && (
-    <div class="flex flex-wrap gap-2">
-      {tech.map((t: string) => (
-        <span
-          class="bg-secondary text-secondary-foreground text-xs font-semibold px-2 py-1 rounded"
-        >
-          {t}
-        </span>
-      ))}
+    {/* Description */}
+    {description && (
+      <p class="text-muted-foreground text-sm mb-4 line-clamp-3 leading-relaxed">{description}</p>
+    )}
+
+    {/* Tech tags */}
+    {tech.length > 0 && (
+      <div class="flex flex-wrap gap-2">
+        {tech.map((t: string) => (
+          <span
+            class="bg-gradient-to-r from-primary/10 to-primary/5 text-primary text-xs font-semibold px-3 py-1.5 rounded-lg border border-primary/20 group-hover:border-primary/40 transition-colors"
+          >
+            {t}
+          </span>
+        ))}
+      </div>
+    )}
+
+    <!-- View indicator -->
+    <div class="mt-4 flex items-center gap-2 text-primary font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <span class="text-sm">View Details</span>
+      <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+      </svg>
     </div>
-  )}
+  </div>
 </a>

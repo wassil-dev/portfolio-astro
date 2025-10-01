@@ -44,68 +44,97 @@ const blogPosts = allBlogPosts
     <Navigation />
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Hero -->
-      <header id="home" class="text-center space-y-8 py-20 sm:py-28">
-        <div class="space-y-6">
+      <header id="home" class="relative text-center space-y-8 py-20 sm:py-32 overflow-hidden">
+        <!-- Animated background gradient -->
+        <div class="absolute inset-0 -z-10 overflow-hidden">
+          <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
+          <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+        </div>
+
+        <div class="space-y-8">
           <div class="inline-block animate-bounce">
-            <div class="bg-gradient-to-r from-primary/20 to-primary/10 border border-primary/30 px-4 py-2 rounded-full text-sm font-semibold text-primary mb-6">
-              👋 Welcome to my portfolio
+            <div class="bg-gradient-to-r from-primary/20 via-primary/15 to-primary/10 border border-primary/30 px-5 py-2.5 rounded-full text-sm font-semibold text-primary mb-6 shadow-lg backdrop-blur-sm">
+              <span class="inline-flex items-center gap-2">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                </span>
+                👋 Welcome to my portfolio
+              </span>
             </div>
           </div>
-          <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight px-2">
-            <span class="bg-gradient-to-r from-foreground via-foreground/90 to-foreground/70 bg-clip-text text-transparent">
+          <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight px-2 animate-fade-in">
+            <span class="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent drop-shadow-sm">
               Hi, I'm Ouassil Dahimene
             </span>
           </h1>
-          <p class="text-base sm:text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
-            Turning <span class="text-primary font-semibold">data into insights</span> and building systems that <span class="text-primary font-semibold">detect fraud</span> before it happens
+          <p class="text-base sm:text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4 animate-fade-in-delay">
+            Turning <span class="text-primary font-bold relative inline-block group">
+              data into insights
+              <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary/30 group-hover:bg-primary transition-colors"></span>
+            </span> and building systems that <span class="text-primary font-bold relative inline-block group">
+              detect fraud
+              <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary/30 group-hover:bg-primary transition-colors"></span>
+            </span> before it happens
           </p>
-          <div class="flex flex-wrap justify-center gap-3 text-sm text-muted-foreground pt-2">
-            <div class="flex items-center gap-2 bg-card border border-border px-4 py-2 rounded-full">
-              <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="flex flex-wrap justify-center gap-3 text-sm pt-4 animate-fade-in-delay-2">
+            <div class="group flex items-center gap-2 bg-gradient-to-r from-card to-card/80 border-2 border-border hover:border-primary/50 px-4 py-2.5 rounded-full shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5">
+              <svg class="w-4 h-4 text-primary group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
               </svg>
-              Data Analyst
+              <span class="font-medium text-foreground">Data Analyst</span>
             </div>
-            <div class="flex items-center gap-2 bg-card border border-border px-4 py-2 rounded-full">
-              <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="group flex items-center gap-2 bg-gradient-to-r from-card to-card/80 border-2 border-border hover:border-primary/50 px-4 py-2.5 rounded-full shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5">
+              <svg class="w-4 h-4 text-primary group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
               </svg>
-              Fraud Detection
+              <span class="font-medium text-foreground">Fraud Detection</span>
             </div>
-            <div class="flex items-center gap-2 bg-card border border-border px-4 py-2 rounded-full">
-              <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="group flex items-center gap-2 bg-gradient-to-r from-card to-card/80 border-2 border-border hover:border-primary/50 px-4 py-2.5 rounded-full shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5">
+              <svg class="w-4 h-4 text-primary group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
               </svg>
-              ML Engineer
+              <span class="font-medium text-foreground">ML Engineer</span>
             </div>
           </div>
         </div>
-        <div class="flex flex-wrap justify-center gap-4 pt-4">
-          <a href="#projects" class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all font-medium shadow-lg hover:shadow-xl hover:-translate-y-0.5">
-            View Projects
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        <div class="flex flex-wrap justify-center gap-4 pt-8 animate-fade-in-delay-3">
+          <a href="#projects" class="group relative inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-primary/90 text-primary-foreground rounded-xl hover:shadow-2xl hover:shadow-primary/25 transition-all font-semibold overflow-hidden hover:scale-105">
+            <span class="absolute inset-0 bg-gradient-to-r from-primary/0 via-white/20 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></span>
+            <span class="relative">View Projects</span>
+            <svg class="w-5 h-5 relative group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
             </svg>
           </a>
-          <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/80 transition-all font-medium border-2 border-border">
-            Get in Touch
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <a href="#contact" class="group inline-flex items-center gap-2 px-8 py-4 bg-card text-foreground rounded-xl hover:bg-accent transition-all font-semibold border-2 border-border hover:border-primary/50 hover:shadow-lg hover:scale-105">
+            <svg class="w-5 h-5 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
             </svg>
+            <span>Get in Touch</span>
           </a>
         </div>
       </header>
 
       <!-- About Me -->
-      <section id="about" class="py-16 sm:py-20">
+      <section id="about" class="relative py-20 sm:py-24">
+        <!-- Section decorator -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-px h-16 bg-gradient-to-b from-transparent via-border to-transparent"></div>
+
         <div class="mb-16 text-center">
-          <div class="inline-block mb-3">
-            <span class="text-4xl">👨‍💻</span>
+          <div class="inline-flex items-center justify-center w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 shadow-lg">
+            <span class="text-3xl">👨‍💻</span>
           </div>
-          <h2 class="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
-            About Me
+          <h2 class="text-4xl sm:text-5xl font-extrabold mb-4">
+            <span class="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
+              About Me
+            </span>
           </h2>
-          <p class="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <div class="flex items-center justify-center gap-2 mb-4">
+            <div class="h-px w-12 bg-gradient-to-r from-transparent to-primary/50"></div>
+            <div class="h-1.5 w-1.5 rounded-full bg-primary"></div>
+            <div class="h-px w-12 bg-gradient-to-l from-transparent to-primary/50"></div>
+          </div>
+          <p class="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">
             Get to know me better and what drives my passion for data
           </p>
         </div>
@@ -116,15 +145,24 @@ const blogPosts = allBlogPosts
       <GitHubStats username="wassil-dev" />
 
       <!-- Projects -->
-      <section id="projects" class="py-16 sm:py-20">
-        <div class="mb-12 text-center sm:text-left">
-          <div class="inline-block mb-3">
-            <span class="text-4xl">🚀</span>
+      <section id="projects" class="relative py-20 sm:py-24">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-px h-16 bg-gradient-to-b from-transparent via-border to-transparent"></div>
+
+        <div class="mb-16 text-center">
+          <div class="inline-flex items-center justify-center w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 shadow-lg">
+            <span class="text-3xl">🚀</span>
           </div>
-          <h2 class="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
-            Featured Projects
+          <h2 class="text-4xl sm:text-5xl font-extrabold mb-4">
+            <span class="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
+              Featured Projects
+            </span>
           </h2>
-          <p class="text-muted-foreground text-lg max-w-2xl">
+          <div class="flex items-center justify-center gap-2 mb-4">
+            <div class="h-px w-12 bg-gradient-to-r from-transparent to-primary/50"></div>
+            <div class="h-1.5 w-1.5 rounded-full bg-primary"></div>
+            <div class="h-px w-12 bg-gradient-to-l from-transparent to-primary/50"></div>
+          </div>
+          <p class="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">
             A selection of my recent work in data analysis, fraud detection, and data engineering
           </p>
         </div>
