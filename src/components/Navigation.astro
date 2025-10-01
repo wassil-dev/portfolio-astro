@@ -1,15 +1,16 @@
 ---
 // Navigation header with smooth scroll links
+const base = import.meta.env.BASE_URL;
 const currentPath = Astro.url.pathname;
-const isHomePage = currentPath === '/';
+const isHomePage = currentPath === base || currentPath === `${base}/`;
 
 const navLinks = [
-  { name: "Home", href: "/" },
-  { name: "About", href: isHomePage ? "#about" : "/#about" },
-  { name: "Projects", href: isHomePage ? "#projects" : "/#projects" },
-  { name: "Experience", href: isHomePage ? "#experience" : "/#experience" },
-  { name: "Blog", href: "/blog" },
-  { name: "Contact", href: isHomePage ? "#contact" : "/#contact" },
+  { name: "Home", href: `${base}/` },
+  { name: "About", href: isHomePage ? "#about" : `${base}/#about` },
+  { name: "Projects", href: isHomePage ? "#projects" : `${base}/#projects` },
+  { name: "Experience", href: isHomePage ? "#experience" : `${base}/#experience` },
+  { name: "Blog", href: `${base}/blog` },
+  { name: "Contact", href: isHomePage ? "#contact" : `${base}/#contact` },
 ];
 ---
 
@@ -17,7 +18,7 @@ const navLinks = [
   <div class="container mx-auto px-4">
     <div class="flex items-center justify-between h-16">
       <!-- Logo/Brand -->
-      <a href="/" class="flex items-center gap-2 font-bold text-xl hover:text-primary transition-colors">
+      <a href={`${base}/`} class="flex items-center gap-2 font-bold text-xl hover:text-primary transition-colors">
         <svg class="w-8 h-8" viewBox="0 0 128 128" fill="none">
           <defs>
             <linearGradient id="nav-grad" x1="0%" y1="0%" x2="100%" y2="100%">
