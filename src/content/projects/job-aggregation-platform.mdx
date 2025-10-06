@@ -1,6 +1,6 @@
 ---
-title: "Algerian Job Aggregation Platform"
-description: "End-to-end data engineering platform aggregating 3,400+ job postings daily from Algerian job boards with intelligent matching and Telegram notifications."
+title: "Job Aggregation Data Platform"
+description: "End-to-end data engineering platform aggregating thousands of job postings daily with intelligent matching and automated notifications."
 tags: ["Apache Airflow", "Data Engineering", "ETL", "PostgreSQL", "MinIO", "Docker"]
 cover: "/images/job-platform-cover.png"
 date: "2025-01-06"
@@ -8,7 +8,7 @@ date: "2025-01-06"
 
 ## Overview
 
-A production-ready data engineering platform that automatically collects, processes, and delivers personalized job notifications for the Algerian market. The system scrapes job postings from multiple sources, transforms and stores them in a data warehouse, and matches opportunities with user preferences through an intelligent Telegram bot.
+A production-ready data engineering platform that automatically collects, processes, and delivers personalized job notifications. The system scrapes job postings from multiple job boards, transforms and stores them in a data warehouse, and matches opportunities with user preferences through an intelligent notification system.
 
 **Business Impact:** Users receive relevant job opportunities instantly without manually checking multiple job boards, reducing job discovery time by 90%.
 
@@ -27,7 +27,7 @@ A production-ready data engineering platform that automatically collects, proces
 - Separate databases for Airflow metadata and business data
 
 **3. Application Layer**
-- FastAPI backend for Telegram bot integration
+- FastAPI backend for messaging bot integration
 - Multi-language support (French, English, Arabic)
 - Intelligent job matching with keyword, location, and work-mode filtering
 
@@ -39,7 +39,7 @@ A production-ready data engineering platform that automatically collects, proces
 ## Key Features
 
 ### Data Collection
-- **Multi-source scraping:** Emploitic (~2,000 jobs) + EmploiPartner (~1,400 jobs)
+- **Multi-source scraping** from major job boards
 - **Hourly synchronization** with rate limiting and retry mechanisms
 - **Incremental updates** to capture new postings efficiently
 
@@ -53,7 +53,7 @@ A production-ready data engineering platform that automatically collects, proces
 - User preference management (keywords, locations, work modes, contract types)
 - Personalized job matching against user criteria
 - Zero duplicate notifications with tracking database
-- Real-time delivery via Telegram Bot API
+- Real-time delivery via messaging API
 
 ## Technical Highlights
 
@@ -61,7 +61,7 @@ A production-ready data engineering platform that automatically collects, proces
 - **XCom optimization:** 99.8% reduction in Airflow metadata size
 - **Parquet compression:** 70% storage reduction for processed data
 - **Indexed search:** 10-100x faster queries with full-text search
-- Processes 3,400+ jobs in under 5 minutes
+- Processes thousands of jobs in under 5 minutes
 
 ### Production Readiness
 - Automated database cleanup (retention policies)
@@ -94,7 +94,7 @@ A production-ready data engineering platform that automatically collects, proces
 - **Workflow Orchestration:** Apache Airflow 3.1.0
 - **Programming:** Python 3.12, SQL
 - **Data Storage:** PostgreSQL 16, MinIO (S3-compatible)
-- **API Framework:** FastAPI, python-telegram-bot
+- **API Framework:** FastAPI
 - **Infrastructure:** Docker Compose, Bash scripting
 - **Data Processing:** Pandas, SQLAlchemy
 
@@ -103,14 +103,14 @@ A production-ready data engineering platform that automatically collects, proces
 The project includes comprehensive documentation:
 - Architecture diagrams and data flow
 - Step-by-step installation guide
-- Telegram bot setup and configuration
+- Bot setup and configuration
 - Troubleshooting guide with common issues
 - Makefile with operational commands
 
 ## Results
 
-- **3,400+ job postings** aggregated and updated hourly
-- **Multi-lingual bot** serving users in 3 languages
+- **Thousands of job postings** aggregated and updated hourly
+- **Multi-lingual support** serving users in 3 languages
 - **Zero duplicate notifications** through intelligent tracking
 - **90% time reduction** in job discovery for users
 - **Production-stable** with 99.5% uptime
