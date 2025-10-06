@@ -1,116 +1,86 @@
 ---
 title: "Job Aggregation Data Platform"
-description: "End-to-end data engineering platform aggregating thousands of job postings daily with intelligent matching and automated notifications."
-tags: ["Apache Airflow", "Data Engineering", "ETL", "PostgreSQL", "MinIO", "Docker"]
+description: "Production-grade data engineering platform with web scraping pipelines, ETL workflows, and intelligent job matching system."
+tags: ["Apache Airflow", "Web Scraping", "ETL", "PostgreSQL", "FastAPI", "Docker"]
 cover: "/images/job-platform-cover.png"
 date: "2025-01-06"
+github: "https://github.com/wassil-dev/job-aggregation-platform"
 ---
 
 ## Overview
 
-A production-ready data engineering platform that automatically collects, processes, and delivers personalized job notifications. The system scrapes job postings from multiple job boards, transforms and stores them in a data warehouse, and matches opportunities with user preferences through an intelligent notification system.
+A production-ready data engineering platform that scrapes, processes, and delivers personalized job notifications. Built with Apache Airflow for orchestration, the system automates the entire pipeline from data collection to intelligent matching.
 
-**Business Impact:** Users receive relevant job opportunities instantly without manually checking multiple job boards, reducing job discovery time by 90%.
+**Impact:** 90% reduction in job discovery time through automated aggregation and personalized notifications.
 
-## Technical Architecture
+## Architecture
 
-### Data Pipeline Components
+**Orchestration:** Apache Airflow 3.1.0 with separated DAG Processor for optimal performance
 
-**1. Orchestration Layer**
-- Apache Airflow 3.1.0 with modern DAG Processor architecture
-- LocalExecutor for single-server efficiency
-- 5 independent services: API Server, Scheduler, DAG Processor, Triggerer, and Workers
+**Storage:**
+- Data Lake: MinIO (S3-compatible) with date-partitioned storage
+- Data Warehouse: PostgreSQL 16 with full-text search indexes
 
-**2. Storage Layer**
-- **Data Lake:** MinIO (S3-compatible) for raw JSON data with date partitioning
-- **Data Warehouse:** PostgreSQL 16 with full-text search indexes
-- Separate databases for Airflow metadata and business data
+**Application:** FastAPI backend with intelligent matching engine and multi-language support
 
-**3. Application Layer**
-- FastAPI backend for messaging bot integration
-- Multi-language support (French, English, Arabic)
-- Intelligent job matching with keyword, location, and work-mode filtering
-
-**4. Infrastructure**
-- Containerized with Docker Compose
-- Resource-limited services (CPU/memory quotas)
-- Health checks and automatic restarts
+**Infrastructure:** Docker Compose with resource limits, health checks, and automatic recovery
 
 ## Key Features
 
-### Data Collection
-- **Multi-source scraping** from major job boards
-- **Hourly synchronization** with rate limiting and retry mechanisms
-- **Incremental updates** to capture new postings efficiently
+### Automated Data Pipeline
+- Web scraping from multiple job boards with rate limiting
+- Hourly synchronization with incremental updates
+- ETL workflows with staging and production layers
+- Hash-based deduplication across sources
 
-### Data Processing
-- Automated ETL pipelines with staging → production workflow
-- Data cleaning and normalization (company names, locations, dates)
-- Deduplication using hash-based job description similarity
+### Intelligent Matching System
 - Full-text search with PostgreSQL GIN indexes
-
-### Smart Notifications
-- User preference management (keywords, locations, work modes, contract types)
-- Personalized job matching against user criteria
-- Zero duplicate notifications with tracking database
+- User preference matching (keywords, locations, work modes)
+- Zero-duplicate notification tracking
 - Real-time delivery via messaging API
 
-## Technical Highlights
+### Production Engineering
+- 99.5% uptime with health monitoring
+- Safe restart scripts preventing missed DAG runs
+- Automated database cleanup with retention policies
+- Resource-limited services (CPU/memory quotas)
+- Comprehensive logging with rotation
 
-### Performance Optimizations
-- **XCom optimization:** 99.8% reduction in Airflow metadata size
-- **Parquet compression:** 70% storage reduction for processed data
-- **Indexed search:** 10-100x faster queries with full-text search
+## Performance Optimizations
+
+- **99.8% reduction** in Airflow metadata size through XCom optimization
+- **70% storage savings** with Parquet compression
+- **10-100x faster queries** using full-text search indexes
 - Processes thousands of jobs in under 5 minutes
 
-### Production Readiness
-- Automated database cleanup (retention policies)
-- Safe restart scripts to prevent missed DAG runs
-- Comprehensive logging with rotation (10MB max per file)
-- System health monitoring DAG running every 6 hours
-- 99.5% uptime with health-check-based container recovery
+## Technical Challenges Solved
 
-### Scalability Design
-- Ready for horizontal scaling with CeleryExecutor + Redis
-- Cloud-migration-ready architecture (AWS/GCP compatible)
-- Supports 50-100 concurrent DAGs on single server
+**Preventing Redundant Runs**
+- Problem: Airflow queues all missed schedules during downtime
+- Solution: Safe shutdown scripts that pause DAGs before restart
 
-## Problem-Solving Approach
+**Cross-Platform Deduplication**
+- Problem: Same job appears on multiple sources
+- Solution: Hash-based deduplication using normalized descriptions
 
-**Challenge 1: Preventing Missed Schedules**
-- **Issue:** Airflow queues all missed runs during downtime, causing redundant scraping
-- **Solution:** Implemented safe shutdown scripts that pause DAGs before restart
+**Memory Management**
+- Problem: DAG parsing consumed excessive memory
+- Solution: Resource limits and DAG serialization
 
-**Challenge 2: Cross-Source Duplicate Detection**
-- **Issue:** Same job posted on multiple platforms creates duplicate notifications
-- **Solution:** Built hash-based deduplication using normalized job descriptions
+## Tech Stack
 
-**Challenge 3: Memory Management**
-- **Issue:** DAG parsing consumed excessive memory with multiple sources
-- **Solution:** Applied resource limits per service and implemented DAG serialization
-
-## Technologies Used
-
-- **Workflow Orchestration:** Apache Airflow 3.1.0
-- **Programming:** Python 3.12, SQL
-- **Data Storage:** PostgreSQL 16, MinIO (S3-compatible)
-- **API Framework:** FastAPI
-- **Infrastructure:** Docker Compose, Bash scripting
-- **Data Processing:** Pandas, SQLAlchemy
-
-## Operational Documentation
-
-The project includes comprehensive documentation:
-- Architecture diagrams and data flow
-- Step-by-step installation guide
-- Bot setup and configuration
-- Troubleshooting guide with common issues
-- Makefile with operational commands
+**Orchestration:** Apache Airflow 3.1.0
+**Languages:** Python 3.12, SQL
+**Storage:** PostgreSQL 16, MinIO
+**Web Scraping:** Requests, BeautifulSoup
+**API:** FastAPI
+**Infrastructure:** Docker Compose
+**Libraries:** Pandas, SQLAlchemy, Boto3
 
 ## Results
 
-- **Thousands of job postings** aggregated and updated hourly
-- **Multi-lingual support** serving users in 3 languages
-- **Zero duplicate notifications** through intelligent tracking
-- **90% time reduction** in job discovery for users
-- **Production-stable** with 99.5% uptime
+- Thousands of jobs aggregated hourly from multiple sources
+- Multi-language support (French, English, Arabic)
+- Zero duplicate notifications through intelligent tracking
+- Production-stable with 99.5% uptime
+- Scalable to 50-100 concurrent workflows
