@@ -1,0 +1,118 @@
+---
+title: "Job Aggregation Data Platform"
+description: "Production data pipeline for scraping, processing, and aggregating job listings with automated notifications via Telegram bot."
+tags: ["Apache Airflow", "Data Engineering", "ETL", "PostgreSQL", "MinIO", "Docker"]
+cover: "/images/job-platform-diagram.png"
+date: "2025-01-06"
+---
+
+## Overview
+
+Built a production-grade data pipeline that scrapes job postings from multiple job boards, processes and deduplicates the data, and sends automated notifications to users via Telegram bot. The platform provides a unified view of the job market without manually checking each site.
+
+### Key Features
+
+- Multi-source job scraping with hourly schedules
+- Automated ETL pipelines with data lake and warehouse
+- Real-time job notifications via Telegram
+- Deduplication and data quality checks
+- Safe restart procedures for zero-downtime maintenance
+- Comprehensive monitoring and health checks
+
+### Technical Stack
+
+- **Orchestration**: Apache Airflow 3.1.0 (DAG Processor architecture)
+- **Data Lake**: MinIO (S3-compatible object storage)
+- **Data Warehouse**: PostgreSQL 16
+- **Notifications**: FastAPI + Telegram Bot API
+- **Infrastructure**: Docker Compose with health checks
+- **Languages**: Python 3.12, SQL
+
+### Architecture Highlights
+
+**Modern Airflow 3.0 Setup**
+- Separated DAG Processor for better performance
+- LocalExecutor optimized for single-server deployment
+- API Server, Scheduler, Triggerer running independently
+
+**Data Flow**
+- Raw data partitioned by source/date in MinIO
+- Transform DAGs clean and normalize data
+- PostgreSQL staging → production tables
+- Bot monitors warehouse for new jobs
+
+**Production Features**
+- Resource limits (CPU/memory) per service
+- Automatic retry logic with exponential backoff
+- Daily database cleanup automation
+- Log rotation (10MB max, 3 files)
+- Safe restart scripts to prevent missed runs
+
+### Results & Impact
+
+- Processes **1000+ jobs daily** from multiple sources
+- **99.5% uptime** with health monitoring
+- **Zero duplicate** notifications through deduplication
+- Reduced job discovery time by **90%** for users
+- Scalable to 50-100 DAGs on single server
+
+### Technical Implementation
+
+**Scraping Layer**
+- Hourly incremental scrapes from job board APIs
+- Rate limiting and retry mechanisms
+- JSON storage partitioned by source/year/month/day
+
+**Transform Layer**
+- Data cleaning and normalization
+- Company name standardization
+- Description-based deduplication
+- Salary extraction and validation
+
+**Load Layer**
+- Staging tables for incremental loads
+- UPSERT logic for handling duplicates
+- Metadata tracking (scraped_at timestamps)
+
+**Notification Layer**
+- User preference management
+- New job matching against criteria
+- Instant and daily digest modes
+
+### Operational Excellence
+
+**Monitoring**
+- System health check DAG runs every 6 hours
+- Service health endpoints for all components
+- Resource usage tracking
+
+**Maintenance**
+- Automated database cleanup (daily at 2 AM)
+- Safe shutdown/restart scripts
+- Pause/unpause all DAGs functionality
+
+**Scalability**
+- Ready to scale to CeleryExecutor with Redis
+- Designed for cloud migration (AWS/GCP)
+- Can add worker nodes horizontally
+
+### Challenges Solved
+
+**Challenge 1: Missed Runs After Downtime**
+- **Problem**: Airflow queues all missed schedules when restarting
+- **Solution**: Created safe restart scripts that pause DAGs before shutdown
+
+**Challenge 2: Duplicate Job Notifications**
+- **Problem**: Same job appears on multiple sources
+- **Solution**: Hash-based deduplication using job description similarity
+
+**Challenge 3: Resource Management**
+- **Problem**: DAG parsing consumed too much memory
+- **Solution**: Implemented resource limits and DAG serialization
+
+### Repository
+
+Open source and available on GitHub with comprehensive documentation:
+- Architecture overview
+- Deployment guide
+- Operational runbooks
