@@ -9,78 +9,50 @@ github: "https://github.com/wassil-dev/job-aggregation-platform"
 
 ## Overview
 
-A production-ready data engineering platform that scrapes, processes, and delivers personalized job notifications. Built with Apache Airflow for orchestration, the system automates the entire pipeline from data collection to intelligent matching.
+A production-ready data engineering platform that scrapes, processes, and delivers personalized job notifications. Built with Apache Airflow for orchestration, the system automates the entire pipeline from data collection to intelligent matching and notification delivery.
 
-**Impact:** 90% reduction in job discovery time through automated aggregation and personalized notifications.
+**Key Achievements:**
+- 90% reduction in job discovery time through automation
+- 99.5% uptime with automated health monitoring
+- Thousands of jobs processed hourly from multiple sources
 
-## Architecture
+## Technical Architecture
 
-**Orchestration:** Apache Airflow 3.1.0 with separated DAG Processor for optimal performance
+**Orchestration:** Apache Airflow 3.1.0 with separated DAG Processor
 
-**Storage:**
-- Data Lake: MinIO (S3-compatible) with date-partitioned storage
-- Data Warehouse: PostgreSQL 16 with full-text search indexes
+**Storage:** MinIO data lake (S3-compatible) + PostgreSQL 16 warehouse with full-text search
 
 **Application:** FastAPI backend with intelligent matching engine and multi-language support
 
-**Infrastructure:** Docker Compose with resource limits, health checks, and automatic recovery
+**Infrastructure:** Dockerized services with resource limits and health checks
 
-## Key Features
+## Core Features
 
-### Automated Data Pipeline
-- Web scraping from multiple job boards with rate limiting
-- Hourly synchronization with incremental updates
-- ETL workflows with staging and production layers
-- Hash-based deduplication across sources
+- **Web scraping** from multiple job boards with rate limiting and retry logic
+- **ETL pipelines** with staging/production workflow and hash-based deduplication
+- **Intelligent matching** using full-text search and user preference filtering
+- **Real-time notifications** with zero-duplicate tracking
+- **Production engineering:** Safe restart scripts, automated cleanup, log rotation
 
-### Intelligent Matching System
-- Full-text search with PostgreSQL GIN indexes
-- User preference matching (keywords, locations, work modes)
-- Zero-duplicate notification tracking
-- Real-time delivery via messaging API
+## Performance Highlights
 
-### Production Engineering
-- 99.5% uptime with health monitoring
-- Safe restart scripts preventing missed DAG runs
-- Automated database cleanup with retention policies
-- Resource-limited services (CPU/memory quotas)
-- Comprehensive logging with rotation
-
-## Performance Optimizations
-
-- **99.8% reduction** in Airflow metadata size through XCom optimization
-- **70% storage savings** with Parquet compression
-- **10-100x faster queries** using full-text search indexes
+- 99.8% reduction in Airflow metadata size through XCom optimization
+- 70% storage savings with Parquet compression
+- 10-100x faster queries using PostgreSQL GIN indexes
 - Processes thousands of jobs in under 5 minutes
 
-## Technical Challenges Solved
+## Technical Challenges
 
-**Preventing Redundant Runs**
-- Problem: Airflow queues all missed schedules during downtime
-- Solution: Safe shutdown scripts that pause DAGs before restart
+**Preventing Redundant Runs:** Implemented safe shutdown scripts that pause DAGs before restart to avoid queuing missed schedules
 
-**Cross-Platform Deduplication**
-- Problem: Same job appears on multiple sources
-- Solution: Hash-based deduplication using normalized descriptions
+**Cross-Platform Deduplication:** Built hash-based deduplication using normalized job descriptions to eliminate duplicates across sources
 
-**Memory Management**
-- Problem: DAG parsing consumed excessive memory
-- Solution: Resource limits and DAG serialization
+**Memory Management:** Applied resource limits per service and DAG serialization to prevent excessive memory consumption
 
-## Tech Stack
+## Technologies
 
-**Orchestration:** Apache Airflow 3.1.0
-**Languages:** Python 3.12, SQL
-**Storage:** PostgreSQL 16, MinIO
-**Web Scraping:** Requests, BeautifulSoup
-**API:** FastAPI
-**Infrastructure:** Docker Compose
-**Libraries:** Pandas, SQLAlchemy, Boto3
+Apache Airflow 3.1.0 • Python 3.12 • PostgreSQL 16 • MinIO • FastAPI • Docker Compose • Requests • BeautifulSoup • Pandas • SQLAlchemy • Boto3
 
-## Results
+---
 
-- Thousands of jobs aggregated hourly from multiple sources
-- Multi-language support (French, English, Arabic)
-- Zero duplicate notifications through intelligent tracking
-- Production-stable with 99.5% uptime
-- Scalable to 50-100 concurrent workflows
+**[View on GitHub](https://github.com/wassil-dev/job-aggregation-platform)** - Full documentation, architecture diagrams, and deployment guide included.
