@@ -11,12 +11,12 @@
   { "name": "Pandas", "icon": "siPandas" },
   { "name": "NumPy", "icon": "siNumpy" },
   { "name": "Scikit-learn", "icon": "siScikitlearn" },
-  { "name": "XGBoost", "custom": "/icons/ml.svg" },
+  { "name": "XGBoost", "custom": "/icons/xgboost.svg" },
   { "name": "Airflow", "icon": "siApacheairflow" },
-  { "name": "Power BI", "icon": "siPowerbi" },
+  { "name": "Power BI", "custom": "/icons/powerbi.svg" },
   { "name": "Plotly", "icon": "siPlotly" },
   { "name": "Git", "icon": "siGit" },
   { "name": "Docker", "icon": "siDocker" },
-  { "name": "AWS", "icon": "siAmazonaws" },
+  { "name": "AWS", "custom": "/icons/aws.svg" },
   { "name": "Linux", "icon": "siLinux" }
 ]
