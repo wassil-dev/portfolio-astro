@@ -1,20 +1,45 @@
 [
   {
-    "role": "Fraud Analyst",
-    "company": "Telecom Company",
-    "period": "2022 - Present",
+    "role": "Fraud Professional / Data Analyst",
+    "company": "Djezzy",
+    "period": "June 2022 - Present",
     "details": [
-      "Detect SMS fraud with anomaly detection",
-      "Automated monthly fraud reporting"
+      "Daily analysis of large datasets to detect anomalies and fraudulent activities",
+      "Design and maintenance of ETL pipelines integrating data from Teradata, Hive, and FTP",
+      "Development of ML models (XGBoost, Random Forest, K-Means, DBSCAN) for fraud detection",
+      "Creation of automated dashboards and reports for fraud and revenue assurance KPIs",
+      "Full automation of Revenue Assurance and Fraud dashboard",
+      "Automation of fraud controls using Python/SQL scripts for near real-time detection"
     ]
   },
   {
-    "role": "Data Analyst",
-    "company": "Cloud Provider",
-    "period": "2019 - 2021",
+    "role": "Backend Python/Odoo Developer",
+    "company": "SIG Service",
+    "period": "Nov 2021 - Mar 2022",
     "details": [
-      "Built ETL pipelines",
-      "Optimized dashboards and reporting"
+      "Developed backend modules in Python/Odoo for patient management",
+      "Integrated REST APIs for communication with third-party services",
+      "Managed and optimized PostgreSQL databases",
+      "Authored technical documentation and provided training support"
+    ]
+  },
+  {
+    "role": "Python/Django Developer - Internship",
+    "company": "ELCS Research",
+    "period": "Dec 2019 - May 2020",
+    "details": [
+      "Developed Django web applications with REST APIs",
+      "Created test datasets to validate API behavior",
+      "Implemented unit tests and authored technical documentation"
+    ]
+  },
+  {
+    "role": "Python Developer - Internship",
+    "company": "APS (Algeria Press Service)",
+    "period": "June 2018 - Sep 2018",
+    "details": [
+      "Developed interactive data center network mapping tool using Python/NetworkX",
+      "Automated network device configuration for Cisco and Dell through Python scripts"
     ]
   }
 ]

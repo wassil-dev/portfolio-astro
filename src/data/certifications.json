@@ -1,20 +1,14 @@
 [
   {
-    "title": "AWS Certified Data Analytics",
-    "issuer": "Amazon Web Services",
-    "date": "2023",
-    "icon": "aws"
-  },
-  {
-    "title": "Machine Learning Specialization",
-    "issuer": "Stanford Online",
-    "date": "2022",
+    "title": "Apache Airflow DAG Authoring Certification",
+    "issuer": "Astronomer",
+    "date": "2025",
     "icon": "certificate"
   },
   {
-    "title": "Python for Data Science",
-    "issuer": "IBM",
-    "date": "2022",
+    "title": "Power BI - Data Analyst",
+    "issuer": "IT Talents School",
+    "date": "2024",
     "icon": "certificate"
   }
 ]
