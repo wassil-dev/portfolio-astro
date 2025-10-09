@@ -1,23 +1,23 @@
 {
   "name": "Ouassil Dahimene",
-  "bio": "Passionate Data Analyst and Fraud Detection Specialist with expertise in machine learning and data engineering. I transform complex data into actionable insights and build robust systems to detect anomalies and prevent fraud.",
+  "bio": "Python Developer and Data Analyst with 4+ years of experience building end-to-end data systems. I specialize in web scraping, ETL pipelines, workflow automation, data analysis, and machine learning. From extracting data from complex websites to building robust ETL pipelines and deploying predictive models, I take your data from raw to ready: collected, processed, analyzed, and delivered automatically through dashboards, APIs, or bots.",
   "image": "/profile.jpg",
   "stats": [
     {
       "label": "Years Experience",
-      "value": "3+"
+      "value": "4+"
     },
     {
       "label": "Projects Completed",
-      "value": "15+"
+      "value": "20+"
     },
     {
       "label": "Technologies",
       "value": "20+"
     },
     {
-      "label": "Fraud Cases Analyzed",
-      "value": "1000+"
+      "label": "ETL Pipelines Built",
+      "value": "50+"
     }
   ]
 }
