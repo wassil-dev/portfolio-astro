@@ -6,17 +6,17 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  // Set the site URL for GitHub Pages
-  site: 'https://wassil-dev.github.io',
-  // Deploying to repository: portfolio-astro
-  base: '/portfolio-astro',
+  // Set the site URL for custom domain
+  site: 'https://ouassil-dahimene.dev',
+  // No base path needed for custom domain
+  base: '/',
 
   integrations: [react(), mdx(), sitemap()],
 
   // Output as static site for GitHub Pages
   output: 'static',
 
-  // Ensure trailing slashes for GitHub Pages
+  // Ensure trailing slashes
   trailingSlash: 'always',
 
   // Build options
