@@ -1,0 +1,10 @@
+# robots.txt for Ouassil Dahimene Portfolio
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://wassil-dev.github.io/portfolio-astro/sitemap-index.xml
+
+# Crawl delay (optional, in seconds)
+Crawl-delay: 1
