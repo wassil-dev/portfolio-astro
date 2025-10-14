@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Navigation from "../../components/Navigation.astro";
+import ImageGallery from "../../components/ImageGallery.astro";
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 
@@ -76,6 +77,11 @@ const base = import.meta.env.BASE_URL;
           </article>
         </CardContent>
       </Card>
+
+      <!-- Image Gallery -->
+      {project.data.gallery && project.data.gallery.length > 0 && (
+        <ImageGallery images={project.data.gallery} />
+      )}
     </div>
 
     <!-- Sidebar -->
