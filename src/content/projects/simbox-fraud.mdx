@@ -56,16 +56,6 @@ A production-ready ML pipeline for detecting SIMBox fraud in telecom networks by
 4. **One-line Training**: `quick_train("xgboost")` for rapid prototyping
 5. **Model Comparison**: Compare all 4 models with `quick_compare()`
 
-### Feature Categories
-
-1. **Call Volume** (7): Total calls, average duration, call frequency
-2. **Call Patterns** (7): Short calls ratio, weekend behavior, international calls
-3. **Temporal** (11): Active days, hourly distribution, peak usage patterns
-4. **Geographic** (10): Unique cells, cell entropy, travel distance, location diversity
-5. **Network & Device** (14): TAC diversity, device types, data usage patterns
-6. **SMS Patterns** (4): Service center analysis, SMS frequency
-7. **SIM Age** (1): Days since activation
-
 ### Implementation
 
 The pipeline processes telecom CDR data through:
