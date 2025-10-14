@@ -47,7 +47,7 @@ const base = import.meta.env.BASE_URL;
   {project.data.cover && (
     <div class="w-full max-w-5xl mx-auto mb-10">
       <div class="w-full h-64 sm:h-80 overflow-hidden rounded-2xl shadow-2xl border border-border">
-        <img src={`${base}${project.data.cover}`} alt={project.data.title} class="w-full h-full object-cover"/>
+        <img src={project.data.cover} alt={project.data.title} class="w-full h-full object-cover"/>
       </div>
     </div>
   )}
