@@ -5,12 +5,12 @@ const currentPath = Astro.url.pathname;
 const isHomePage = currentPath === base || currentPath === `${base}/`;
 
 const navLinks = [
-  { name: "Home", href: `${base}/` },
-  { name: "About", href: isHomePage ? "#about" : `${base}/#about` },
-  { name: "Projects", href: isHomePage ? "#projects" : `${base}/#projects` },
-  { name: "Experience", href: isHomePage ? "#experience" : `${base}/#experience` },
-  { name: "Blog", href: `${base}/blog` },
-  { name: "Contact", href: isHomePage ? "#contact" : `${base}/#contact` },
+  { name: "Home", href: base },
+  { name: "About", href: isHomePage ? "#about" : "/#about" },
+  { name: "Projects", href: isHomePage ? "#projects" : "/#projects" },
+  { name: "Experience", href: isHomePage ? "#experience" : "/#experience" },
+  { name: "Blog", href: `${base}blog` },
+  { name: "Contact", href: isHomePage ? "#contact" : "/#contact" },
 ];
 ---
 

@@ -13,6 +13,11 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Debug: Log when component mounts
+  useEffect(() => {
+    console.log('🖼️ ImageGallery mounted with', images?.length, 'images:', images);
+  }, []);
+
   const openLightbox = (index: number) => {
     setCurrentIndex(index);
     setLightboxOpen(true);
