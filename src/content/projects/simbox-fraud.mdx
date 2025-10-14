@@ -1,22 +1,79 @@
 ---
 title: "SIMBox Fraud Detection"
-description: "Detect SIMBox fraud using ML on CDR data."
-tags: ["Python", "ML", "Fraud"]
+description: "ML pipeline for detecting simbox fraud in telecom networks using CDR data analysis."
+tags: ["Python", "Machine Learning", "XGBoost", "DuckDB", "SQL", "Fraud Detection"]
 cover: "/images/simbox.jpeg"
-date: "2024-05-01"
+date: "2024-10-14"
+github: "https://github.com/wassil-dev/simbox_ai.git"
+tech: "Python • DuckDB • XGBoost • LightGBM • SQL"
 ---
 
 ## Overview
 
-Detect SIMBox fraud using ML applied on CDR data.
+A production-ready ML pipeline for detecting SIMBox fraud in telecom networks by analyzing Call Detail Records (CDR). The system uses SQL-based feature engineering and multiple ML models to identify fraudulent SIM activity with high accuracy.
 
-### Workflow
+**Current Performance**: 90.41% AUC, 83.59% F1 Score (XGBoost with v11 features)
 
-1. Data preprocessing
-2. Feature engineering
-3. Model training
+### Key Features
+
+- **63 engineered features** across 7 categories (call volume, patterns, temporal, geographic, network/device, SMS, SIM age)
+- **SQL-first architecture** for fast feature extraction using DuckDB
+- **4 ML models** with optimized hyperparameters (XGBoost, LightGBM, Random Forest, Logistic Regression)
+- **Experiment tracking** with DuckDB-based versioning
+- **Simple API** for quick training, comparison, and deployment
+
+### Technical Stack
+
+- **Database**: DuckDB (columnar, fast analytics)
+- **Feature Engineering**: Pure SQL for performance and flexibility
+- **ML Models**: XGBoost, LightGBM, Random Forest, Logistic Regression
+- **Data Processing**: Pandas, NumPy, Scikit-learn
+- **Orchestration**: Python with minimal boilerplate
+- **Package Management**: UV for fast dependency management
 
 ### Results
 
-- 95% accuracy
-- Automated reports
+| Version | Features | F1 Score | AUC | Best Model |
+|---------|----------|----------|-----|------------|
+| **v11** | 63 | **83.59%** | **90.41%** | XGBoost |
+| v10 | 62 | 81.16% | 88.52% | XGBoost |
+| v8 | 58 | 80.79% | 88.41% | XGBoost |
+
+#### Model Comparison (v11)
+
+- **XGBoost**: 90.41% AUC, 83.59% F1 (best overall)
+- **LightGBM**: 90.38% AUC, 83.34% F1 (faster training)
+- **Random Forest**: 89.20% AUC, 81.50% F1 (solid baseline)
+- **Logistic Regression**: 85.50% AUC, 76.80% F1 (linear baseline)
+
+### Architecture Highlights
+
+**Philosophy**: Simple is better than complex. Focus on fast experimentation rather than over-engineering.
+
+1. **SQL-based Features**: All 63 features extracted via SQL for speed and maintainability
+2. **DuckDB Analytics**: Columnar database optimized for analytical queries
+3. **Modular Pipeline**: Easy to modify features, compare models, and track experiments
+4. **One-line Training**: `quick_train("xgboost")` for rapid prototyping
+5. **Model Comparison**: Compare all 4 models with `quick_compare()`
+
+### Feature Categories
+
+1. **Call Volume** (7): Total calls, average duration, call frequency
+2. **Call Patterns** (7): Short calls ratio, weekend behavior, international calls
+3. **Temporal** (11): Active days, hourly distribution, peak usage patterns
+4. **Geographic** (10): Unique cells, cell entropy, travel distance, location diversity
+5. **Network & Device** (14): TAC diversity, device types, data usage patterns
+6. **SMS Patterns** (4): Service center analysis, SMS frequency
+7. **SIM Age** (1): Days since activation
+
+### Implementation
+
+The pipeline processes telecom CDR data through:
+
+1. **Data Ingestion**: Raw CDR data loaded into DuckDB
+2. **Feature Engineering**: SQL queries generate 63 features per SIM
+3. **Model Training**: Automated hyperparameter tuning with cross-validation
+4. **Evaluation**: Comprehensive metrics (AUC, F1, Precision, Recall, Confusion Matrix)
+5. **Experiment Tracking**: All results versioned in DuckDB
+
+Designed for ML researchers and data scientists who need to iterate quickly on features and models without unnecessary complexity.
