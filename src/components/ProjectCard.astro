@@ -13,10 +13,10 @@ const base = import.meta.env.BASE_URL;
 
 <a
   href={link}
-  class="group relative block p-6 border-2 border-border rounded-2xl shadow-sm hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 bg-gradient-to-br from-card to-card/50 hover:border-primary/50 hover:-translate-y-2"
+  class="group relative block p-6 border-2 border-border rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 bg-gradient-to-br from-card to-card/50 hover:-translate-y-2 glow-hover gradient-border-hover"
 >
   <!-- Gradient overlay on hover -->
-  <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+  <div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
 
   <!-- Content wrapper -->
   <div class="relative">
@@ -46,7 +46,7 @@ const base = import.meta.env.BASE_URL;
       <div class="flex flex-wrap gap-2">
         {tech.map((t: string) => (
           <span
-            class="bg-gradient-to-r from-primary/10 to-primary/5 text-primary text-xs font-semibold px-3 py-1.5 rounded-lg border border-primary/20 group-hover:border-primary/40 transition-colors"
+            class="bg-gradient-to-r from-primary/10 to-accent/5 text-primary text-xs font-semibold px-3 py-1.5 rounded-lg border border-primary/20 group-hover:border-accent/40 transition-colors font-mono"
           >
             {t}
           </span>

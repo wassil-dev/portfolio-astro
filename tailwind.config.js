@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
   	extend: {
+  		fontFamily: {
+  			mono: ['JetBrains Mono', 'monospace'],
+  		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
@@ -42,6 +45,7 @@ module.exports = {
   				DEFAULT: 'hsl(var(--destructive))',
   				foreground: 'hsl(var(--destructive-foreground))'
   			},
+  			cyber: 'hsl(var(--cyber))',
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
@@ -57,5 +61,5 @@ module.exports = {
   },
   plugins: [require("tailwindcss-animate"),
   require("@tailwindcss/typography")],
-  
+
 };

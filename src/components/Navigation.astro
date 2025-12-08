@@ -18,18 +18,26 @@ const navLinks = [
   <div class="container mx-auto px-4">
     <div class="flex items-center justify-between h-16">
       <!-- Logo/Brand -->
-      <a href={base} class="flex items-center gap-2 font-bold text-xl hover:text-primary transition-colors">
-        <svg class="w-8 h-8" viewBox="0 0 128 128" fill="none">
+      <a href={base} class="flex items-center gap-2 font-bold text-xl hover:text-primary transition-colors group">
+        <svg class="w-8 h-8 transition-transform group-hover:scale-105" viewBox="0 0 128 128" fill="none">
           <defs>
             <linearGradient id="nav-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
-              <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+              <stop offset="0%" style="stop-color:#3b82f6" />
+              <stop offset="50%" style="stop-color:#8b5cf6" />
+              <stop offset="100%" style="stop-color:#06b6d4" />
             </linearGradient>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="2" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
           </defs>
-          <rect width="128" height="128" rx="24" fill="url(#nav-grad)"/>
-          <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-size="72" font-weight="bold" fill="white">OD</text>
+          <rect width="128" height="128" rx="24" fill="url(#nav-grad)" class="group-hover:filter group-hover:drop-shadow-lg"/>
+          <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="72" font-weight="bold" fill="white">OD</text>
         </svg>
-        <span class="hidden sm:inline">Ouassil</span>
+        <span class="hidden sm:inline gradient-text font-mono">Ouassil</span>
       </a>
 
       <!-- Desktop Navigation -->

@@ -7,56 +7,60 @@
 /* ---------------------- */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    /* Geek Data Fusion Theme - Light Mode */
+    --background: 220 20% 97%;
+    --foreground: 224 71% 4%;
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 224 71% 4%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
+    --popover-foreground: 224 71% 4%;
+    --primary: 221 83% 53%;              /* #3b82f6 - Data Blue */
+    --primary-foreground: 210 40% 98%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 9% 46%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 262 83% 58%;               /* #8b5cf6 - Purple */
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 221 83% 53%;
     --radius: 0.5rem;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
+    --cyber: 187 85% 43%;                /* #06b6d4 - Cyan */
+    --chart-1: 221 83% 53%;
+    --chart-2: 262 83% 58%;
+    --chart-3: 187 85% 43%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
   }
 
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
+    /* Geek Data Fusion Theme - Dark Mode (Hacker Mode) */
+    --background: 224 71% 4%;
+    --foreground: 210 20% 98%;
+    --card: 224 47% 8%;
+    --card-foreground: 210 20% 98%;
+    --popover: 224 47% 8%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 217 91% 60%;              /* #60a5fa - Softer blue */
+    --primary-foreground: 224 71% 4%;
+    --secondary: 215 28% 17%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 215 28% 17%;
+    --muted-foreground: 217 10% 64%;
+    --accent: 263 70% 50%;               /* Purple */
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 215 28% 17%;
+    --input: 215 28% 17%;
+    --ring: 217 91% 60%;
+    --cyber: 187 85% 53%;                /* Brighter cyan in dark */
+    --chart-1: 217 91% 60%;
+    --chart-2: 263 70% 50%;
+    --chart-3: 187 85% 53%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
@@ -196,5 +200,100 @@
   .animate-gradient {
     background-size: 200% 200%;
     animation: gradient-shift 3s ease infinite;
+  }
+
+  /* ---------------------- */
+  /* Geek Data Fusion Utils */
+  /* ---------------------- */
+
+  /* Gradient text (Blue → Purple → Cyan) */
+  .gradient-text {
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Dot grid background pattern */
+  .tech-grid {
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      hsl(var(--primary) / 0.1) 1px,
+      transparent 0
+    );
+    background-size: 20px 20px;
+  }
+
+  /* Glow effect on hover */
+  .glow-hover {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .glow-hover:hover {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3), 0 0 40px hsl(var(--accent) / 0.15);
+  }
+
+  /* Gradient border wrapper */
+  .gradient-border-wrapper {
+    position: relative;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6, #06b6d4);
+    padding: 1px;
+    border-radius: var(--radius);
+  }
+  .gradient-border-wrapper > * {
+    background: hsl(var(--card));
+    border-radius: calc(var(--radius) - 1px);
+  }
+
+  /* Gradient border on hover effect */
+  .gradient-border-hover {
+    position: relative;
+    overflow: hidden;
+  }
+  .gradient-border-hover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6, #06b6d4);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  .gradient-border-hover:hover::before {
+    opacity: 1;
+  }
+
+  /* Stat numbers with gradient */
+  .stat-gradient {
+    font-family: 'JetBrains Mono', monospace;
+    font-variant-numeric: tabular-nums;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Gradient button */
+  .gradient-button {
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    transition: all 0.3s ease;
+  }
+  .gradient-button:hover {
+    box-shadow: 0 0 20px hsl(221 83% 53% / 0.4), 0 0 40px hsl(262 83% 58% / 0.2);
+    transform: translateY(-2px);
+  }
+
+  /* Cyber accent color utility */
+  .text-cyber {
+    color: hsl(var(--cyber));
+  }
+  .bg-cyber {
+    background-color: hsl(var(--cyber));
   }
 }
