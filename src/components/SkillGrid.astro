@@ -6,6 +6,7 @@ interface Skill {
   name: string;
   icon?: string;
   custom?: string;
+  category?: string;
 }
 
 interface Props {
@@ -14,25 +15,43 @@ interface Props {
 
 const { skills } = Astro.props;
 const base = import.meta.env.BASE_URL;
+
+// Group skills by category, preserving order
+const grouped = skills.reduce((acc: Record<string, Skill[]>, skill: Skill) => {
+  const cat = skill.category ?? "Other";
+  if (!acc[cat]) acc[cat] = [];
+  acc[cat].push(skill);
+  return acc;
+}, {});
 ---
 
-<ul class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
-  {skills.map((skill: Skill) => {
-    const iconData = skill.icon ? icons[skill.icon as keyof typeof icons] as SimpleIcon | undefined : null;
-    return (
-      <li class="group">
-        <div class="flex flex-col items-center justify-center gap-2 p-3 bg-card border-2 border-border rounded-lg hover:border-primary/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-          {iconData && typeof iconData === 'object' && 'path' in iconData ? (
-            <svg role="img" viewBox="0 0 24 24" width="32" height="32" fill={`#${iconData.hex}`} class="group-hover:scale-110 transition-transform duration-300">
-              <title>{iconData.title}</title>
-              <path d={iconData.path} />
-            </svg>
-          ) : skill.custom ? (
-            <img src={`${base}${skill.custom.startsWith('/') ? skill.custom.slice(1) : skill.custom}`} alt={skill.name} width="32" height="32" class="group-hover:scale-110 transition-transform duration-300" />
-          ) : null}
-          <span class="text-xs font-medium text-center text-foreground">{skill.name}</span>
-        </div>
-      </li>
-    );
-  })}
-</ul>
+<div class="space-y-10">
+  {(Object.entries(grouped) as [string, Skill[]][]).map(([category, categorySkills]) => (
+    <div class="reveal">
+      <h3 class="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-4 flex items-center gap-3">
+        <span>{category}</span>
+        <span class="flex-1 h-px bg-border"></span>
+      </h3>
+      <ul class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
+        {categorySkills.map((skill: Skill) => {
+          const iconData = skill.icon ? icons[skill.icon as keyof typeof icons] as SimpleIcon | undefined : null;
+          return (
+            <li class="group">
+              <div class="flex flex-col items-center justify-center gap-2 p-3 bg-card border-2 border-border rounded-lg hover:border-primary/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                {iconData && typeof iconData === 'object' && 'path' in iconData ? (
+                  <svg role="img" viewBox="0 0 24 24" width="32" height="32" fill={`#${iconData.hex}`} class="group-hover:scale-110 transition-transform duration-300">
+                    <title>{iconData.title}</title>
+                    <path d={iconData.path} />
+                  </svg>
+                ) : skill.custom ? (
+                  <img src={`${base}${skill.custom.startsWith('/') ? skill.custom.slice(1) : skill.custom}`} alt={skill.name} width="32" height="32" class="group-hover:scale-110 transition-transform duration-300" />
+                ) : null}
+                <span class="text-xs font-medium text-center text-foreground">{skill.name}</span>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  ))}
+</div>

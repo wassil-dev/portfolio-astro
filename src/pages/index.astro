@@ -74,7 +74,10 @@ const blogPosts = allBlogPosts
               Hi, I'm Ouassil Dahimene
             </span>
           </h1>
-          <p class="text-base sm:text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4 animate-fade-in-delay">
+          <p class="text-lg sm:text-2xl font-semibold text-primary animate-fade-in-delay" aria-live="polite">
+            <span id="typing-text"></span><span id="typing-cursor"></span>
+          </p>
+          <p class="text-base sm:text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4 animate-fade-in-delay-2">
             I help businesses turn <span class="text-primary font-bold relative inline-block group">
               data into results
               <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary/30 group-hover:bg-primary transition-colors"></span>
@@ -83,7 +86,7 @@ const blogPosts = allBlogPosts
               <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary/30 group-hover:bg-primary transition-colors"></span>
             </span>, running analysis, and delivering insights through dashboards, bots, or APIs
           </p>
-          <div class="flex flex-wrap justify-center gap-3 text-sm pt-4 animate-fade-in-delay-2">
+          <div class="flex flex-wrap justify-center gap-3 text-sm pt-4 animate-fade-in-delay-3">
             <div class="group flex items-center gap-2 bg-gradient-to-r from-card to-card/80 border-2 border-border hover:border-primary/50 px-4 py-2.5 rounded-full shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5">
               <svg class="w-4 h-4 text-primary group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
@@ -132,7 +135,7 @@ const blogPosts = allBlogPosts
         <!-- Section decorator -->
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-px h-16 bg-gradient-to-b from-transparent via-border to-transparent"></div>
 
-        <div class="mb-16 text-center">
+        <div class="mb-16 text-center reveal">
           <div class="inline-flex items-center justify-center w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 shadow-lg">
             <span class="text-3xl">👨‍💻</span>
           </div>
@@ -160,7 +163,7 @@ const blogPosts = allBlogPosts
       <section id="projects" class="relative py-20 sm:py-24">
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-px h-16 bg-gradient-to-b from-transparent via-border to-transparent"></div>
 
-        <div class="mb-16 text-center">
+        <div class="mb-16 text-center reveal">
           <div class="inline-flex items-center justify-center w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 shadow-lg">
             <span class="text-3xl">🚀</span>
           </div>
@@ -178,7 +181,7 @@ const blogPosts = allBlogPosts
             A selection of my recent work in data analysis, fraud detection, and data engineering
           </p>
         </div>
-        <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mb-8">
+        <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mb-8 reveal">
           {projects.map((p) => (
             <ProjectCard {...p} />
           ))}
@@ -197,7 +200,7 @@ const blogPosts = allBlogPosts
       <section id="skills" class="py-16 sm:py-20">
         <div class="bg-muted/30 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-16">
           <div class="max-w-7xl mx-auto">
-          <div class="mb-12 text-center">
+          <div class="mb-12 text-center reveal">
             <div class="inline-block mb-3">
               <span class="text-4xl">🛠</span>
             </div>
@@ -215,7 +218,7 @@ const blogPosts = allBlogPosts
 
       <!-- Experience -->
       <section id="experience" class="py-16 sm:py-20">
-        <div class="mb-12 text-center sm:text-left">
+        <div class="mb-12 text-center sm:text-left reveal">
           <div class="inline-block mb-3">
             <span class="text-4xl">📈</span>
           </div>
@@ -233,7 +236,7 @@ const blogPosts = allBlogPosts
       <section id="certifications" class="py-16 sm:py-20">
         <div class="bg-muted/30 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-16">
           <div class="max-w-7xl mx-auto">
-          <div class="mb-12 text-center">
+          <div class="mb-12 text-center reveal">
             <div class="inline-block mb-3">
               <span class="text-4xl">🏆</span>
             </div>
@@ -289,7 +292,7 @@ const blogPosts = allBlogPosts
 
       <!-- Contact -->
       <section id="contact" class="py-16 sm:py-20 pb-24">
-        <div class="mb-12 text-center">
+        <div class="mb-12 text-center reveal">
           <div class="inline-block mb-3">
             <span class="text-4xl">📬</span>
           </div>
@@ -312,4 +315,70 @@ const blogPosts = allBlogPosts
   html {
     scroll-behavior: smooth;
   }
+
+  #typing-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: currentColor;
+    margin-left: 2px;
+    vertical-align: middle;
+    animation: blink 0.8s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
 </style>
+
+<script>
+  // --- Scroll reveal ---
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+  // --- Typing animation ---
+  const roles = ['Python Developer', 'Data Scientist', 'ML Engineer'];
+  const target = document.getElementById('typing-text');
+  if (target) {
+    let roleIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    function tick() {
+      const current = roles[roleIndex];
+      if (deleting) {
+        charIndex--;
+        target.textContent = current.slice(0, charIndex);
+        if (charIndex === 0) {
+          deleting = false;
+          roleIndex = (roleIndex + 1) % roles.length;
+          setTimeout(tick, 400);
+          return;
+        }
+        setTimeout(tick, 50);
+      } else {
+        charIndex++;
+        target.textContent = current.slice(0, charIndex);
+        if (charIndex === current.length) {
+          deleting = true;
+          setTimeout(tick, 1800);
+          return;
+        }
+        setTimeout(tick, 90);
+      }
+    }
+    tick();
+  }
+</script>

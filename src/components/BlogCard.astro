@@ -20,8 +20,8 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
   day: 'numeric'
 }).format(pubDate);
 
-// Calculate read time (rough estimate: 200 words per minute)
-const readTime = Math.ceil(description.split(' ').length / 50);
+// Estimate read time based on average 200 wpm; minimum 1 min
+const readTime = Math.max(1, Math.ceil(description.split(' ').length / 200) + 2);
 ---
 
 <article class="group block bg-card border-2 border-border rounded-xl overflow-hidden hover:border-primary/50 hover:shadow-lg transition-all">

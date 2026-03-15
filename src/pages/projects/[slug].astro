@@ -12,14 +12,23 @@ import { Button } from '@/components/ui/button';
 // Static paths
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
-  return projects.map((project) => ({
+  const sorted = projects.sort((a: CollectionEntry<"projects">, b: CollectionEntry<"projects">) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+  return sorted.map((project: CollectionEntry<"projects">, index: number) => ({
     params: { slug: project.slug },
-    props: { project },
+    props: {
+      project,
+      prevProject: sorted[index + 1] ?? null,
+      nextProject: sorted[index - 1] ?? null,
+    },
   }));
 }
 
 // Props
-const { project } = Astro.props as { project: CollectionEntry<"projects"> };
+const { project, prevProject, nextProject } = Astro.props as {
+  project: CollectionEntry<"projects">;
+  prevProject: CollectionEntry<"projects"> | null;
+  nextProject: CollectionEntry<"projects"> | null;
+};
 const { Content } = await project.render();
 
 const base = import.meta.env.BASE_URL;
@@ -155,5 +164,36 @@ const base = import.meta.env.BASE_URL;
       </div>
     </div>
   </div>
+  <!-- Prev / Next Navigation -->
+  {(prevProject || nextProject) && (
+    <nav class="max-w-5xl mx-auto px-4 sm:px-6 md:px-8 py-10 border-t border-border mt-4 grid grid-cols-2 gap-4">
+      <div>
+        {prevProject && (
+          <a href={`${base}projects/${prevProject.slug}/`} class="group flex flex-col gap-1 p-4 rounded-xl border-2 border-border hover:border-primary/50 hover:shadow-md transition-all">
+            <span class="text-xs font-semibold uppercase tracking-widest text-muted-foreground flex items-center gap-1">
+              <svg class="w-3 h-3 group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+              </svg>
+              Previous
+            </span>
+            <span class="font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-1">{prevProject.data.title}</span>
+          </a>
+        )}
+      </div>
+      <div>
+        {nextProject && (
+          <a href={`${base}projects/${nextProject.slug}/`} class="group flex flex-col gap-1 p-4 rounded-xl border-2 border-border hover:border-primary/50 hover:shadow-md transition-all text-right">
+            <span class="text-xs font-semibold uppercase tracking-widest text-muted-foreground flex items-center justify-end gap-1">
+              Next
+              <svg class="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </span>
+            <span class="font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-1">{nextProject.data.title}</span>
+          </a>
+        )}
+      </div>
+    </nav>
+  )}
 </main>
 </Layout>
