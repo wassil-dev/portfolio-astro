@@ -1,5 +1,17 @@
 [
   {
+    "role": "Full Stack Developer & AI Integration",
+    "company": "Upwork (Freelance)",
+    "period": "2025 - Present",
+    "details": [
+      "Built MonAssistantEntreprise, a B2B SaaS for French entrepreneurs with AI-powered document analysis using Google Gemini 2.5",
+      "Architected full-stack system: async FastAPI backend, React 18 + Chakra UI frontend, PostgreSQL with SQLAlchemy 2.0",
+      "Implemented credit wallet, pay-per-use pricing, monthly subscription (Pass Expert), and a full admin panel",
+      "Secured platform with JWT auth, Fernet file encryption, HMAC-signed URLs, bcrypt, and rate limiting",
+      "Containerized with Docker Compose (5 services); 99 pytest tests with full coverage of auth, wallet, services, and admin"
+    ]
+  },
+  {
     "role": "Fraud Professional / Data Analyst",
     "company": "Djezzy",
     "period": "June 2022 - Present",

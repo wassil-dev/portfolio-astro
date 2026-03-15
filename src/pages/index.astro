@@ -81,10 +81,13 @@ const blogPosts = allBlogPosts
             I help businesses turn <span class="text-primary font-bold relative inline-block group">
               data into results
               <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary/30 group-hover:bg-primary transition-colors"></span>
-            </span>, from scraping websites and automating workflows, to building <span class="text-primary font-bold relative inline-block group">
+            </span> — from scraping and <span class="text-primary font-bold relative inline-block group">
               ETL pipelines
               <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary/30 group-hover:bg-primary transition-colors"></span>
-            </span>, running analysis, and delivering insights through dashboards, bots, or APIs
+            </span> to <span class="text-primary font-bold relative inline-block group">
+              full-stack AI-powered applications
+              <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary/30 group-hover:bg-primary transition-colors"></span>
+            </span> — delivering insights through dashboards, APIs, or complete SaaS products
           </p>
           <div class="flex flex-wrap justify-center gap-3 text-sm pt-4 animate-fade-in-delay-3">
             <div class="group flex items-center gap-2 bg-gradient-to-r from-card to-card/80 border-2 border-border hover:border-primary/50 px-4 py-2.5 rounded-full shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5">
@@ -110,6 +113,12 @@ const blogPosts = allBlogPosts
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
               </svg>
               <span class="font-medium text-foreground">Data Science & ML</span>
+            </div>
+            <div class="group flex items-center gap-2 bg-gradient-to-r from-card to-card/80 border-2 border-border hover:border-primary/50 px-4 py-2.5 rounded-full shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5">
+              <svg class="w-4 h-4 text-primary group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+              <span class="font-medium text-foreground">AI Integration</span>
             </div>
           </div>
         </div>
@@ -349,7 +358,7 @@ const blogPosts = allBlogPosts
   document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
   // --- Typing animation ---
-  const roles = ['Python Developer', 'Data Scientist', 'ML Engineer'];
+  const roles = ['Python Developer', 'Data Scientist', 'Full Stack Developer', 'ML Engineer'];
   const target = document.getElementById('typing-text');
   if (target) {
     let roleIndex = 0;

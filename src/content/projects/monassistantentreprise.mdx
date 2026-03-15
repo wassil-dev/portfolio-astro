@@ -1,0 +1,33 @@
+---
+title: "MonAssistantEntreprise"
+description: "B2B SaaS platform for French entrepreneurs offering AI-powered document analysis (Google Gemini 2.5), a credit wallet, and an unlimited subscription."
+tags: ["Python", "FastAPI", "React", "PostgreSQL", "Docker", "Google Gemini", "SaaS", "AI"]
+cover: "/images/mae-cover.png"
+date: "2025-02-01"
+tech: "FastAPI • React • PostgreSQL • Google Gemini 2.5 • Docker • Nginx"
+gallery:
+  - image: "/images/mae-dashboard.png"
+    caption: "Service catalog — 9 AI-powered analysis tools with credit-based pricing"
+  - image: "/images/mae-services.png"
+    caption: "Admin panel — dynamic service editor with pricing, prompts, and toggle controls"
+---
+
+## Overview
+
+MonAssistantEntreprise is a **production-ready B2B SaaS** for French entrepreneurs who need expert-level document intelligence without hiring consultants. Users upload administrative, fiscal, legal, and financial documents and receive structured AI analysis in seconds, powered by **Google Gemini 2.5 Flash / Pro**.
+
+## Key Features
+
+- **9 AI Services** — Tax optimization, contract analysis, invoice auditing, subsidy hunting, and more — each with a purpose-built Gemini prompt
+- **Credit Wallet** — Pay-per-use with top-up, transaction history, and a 5€ welcome bonus
+- **Pass Expert** — 29€/month unlimited subscription for all services
+- **Admin Panel** — Revenue analytics, user management, live service editor, email template editor, and system settings
+- **Security & RGPD** — Fernet-encrypted storage, HMAC-signed time-limited download URLs, JWT auth, bcrypt, soft deletes, rate limiting
+
+## Technical Highlights
+
+- Async FastAPI backend with SQLAlchemy 2.0 (asyncpg) and Alembic migrations
+- React 18 + Chakra UI + Framer Motion frontend
+- 99 pytest tests with in-memory SQLite fixtures
+- Containerized with Docker Compose (5 services: backend, frontend, PostgreSQL, Nginx, Mailpit)
+- Multimodal Gemini integration — PDF, Word, Excel, images, and camera input per service

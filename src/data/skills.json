@@ -8,6 +8,7 @@
   { "name": "XGBoost", "custom": "/icons/xgboost.svg", "category": "ML & AI" },
   { "name": "Plotly", "icon": "siPlotly", "category": "ML & AI" },
   { "name": "Power BI", "custom": "/icons/powerbi.svg", "category": "ML & AI" },
+  { "name": "Google Gemini", "icon": "siGoogle", "category": "ML & AI" },
   { "name": "PostgreSQL", "icon": "siPostgresql", "category": "Data Engineering" },
   { "name": "MySQL", "icon": "siMysql", "category": "Data Engineering" },
   { "name": "Teradata", "icon": "siTeradata", "category": "Data Engineering" },
@@ -15,8 +16,11 @@
   { "name": "PySpark", "icon": "siApachespark", "category": "Data Engineering" },
   { "name": "Hive", "icon": "siApachehive", "category": "Data Engineering" },
   { "name": "Airflow", "icon": "siApacheairflow", "category": "Data Engineering" },
-  { "name": "Django", "icon": "siDjango", "category": "DevOps & Cloud" },
+  { "name": "FastAPI", "icon": "siFastapi", "category": "Web & Backend" },
+  { "name": "Django", "icon": "siDjango", "category": "Web & Backend" },
+  { "name": "React", "icon": "siReact", "category": "Web & Backend" },
   { "name": "Docker", "icon": "siDocker", "category": "DevOps & Cloud" },
+  { "name": "Nginx", "icon": "siNginx", "category": "DevOps & Cloud" },
   { "name": "AWS", "custom": "/icons/aws.svg", "category": "DevOps & Cloud" },
   { "name": "Git", "icon": "siGit", "category": "DevOps & Cloud" }
 ]
